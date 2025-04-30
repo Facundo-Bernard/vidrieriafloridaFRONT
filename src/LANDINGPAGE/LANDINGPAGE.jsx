@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import './index.css'; // para tus animaciones CSS
-import CAROUSEL from './CAROUSEL/CAROUSEL.JSX';
+import CAROUSEL from './CAROUSEL/CAROUSEL.jsx';
 import DondeEncontrarnos from './DONDEENCONTRARNOS/DONDEENCONTRARNOS';
 import FOOTER from "./FOOTER/FOOTER";
 import NAVBAR from './NAVBAR/navbar';
