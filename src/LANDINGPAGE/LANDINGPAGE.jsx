@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import CAROUSEL from './CAROUSEL/CAROUSEL.jsx';
 import DondeEncontrarnos from './DONDEENCONTRARNOS/DONDEENCONTRARNOS';
 import FOOTER from "./FOOTER/FOOTER";
-import NAVBAR from './NAVBAR/navbar';
+import NAVBAR from './NAVBAR/NAVBAR.jsx';
 import PROCESOSECTION from './PROCESOSECTION/PROCESOSECTION';
 import PRODUCTSECTION from "./PRODUCTSECTION/PRODUCTSECTION";
 import QUIENESSOMOS from './QUIENESSOMOS/QUIENESSOMOS';
