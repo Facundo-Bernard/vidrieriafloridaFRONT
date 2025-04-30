@@ -7,7 +7,7 @@ function PROCESOSECTION() {
   useEffect(() => {
     const fetchFaqs = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/faq");
+        const response = await fetch("https://vidrieriaflorida-front-u98r.vercel.app/api/faq");
         const data = await response.json();
         setFaqList(data);
       } catch (error) {

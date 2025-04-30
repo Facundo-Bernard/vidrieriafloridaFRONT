@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const API_URL = 'http://localhost:8080/api/presentacion';
+const API_URL = 'https://vidrieriaflorida-front-u98r.vercel.app/api/presentacion';
 
 function QUIENESSOMOS() {
   const [presentacion, setPresentacion] = useState({
