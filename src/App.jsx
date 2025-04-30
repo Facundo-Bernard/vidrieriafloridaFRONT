@@ -1,5 +1,5 @@
 import './App.css'
-import LandingPage from './LANDINGPAGE/LANDINGPAGE.JSX'
+import LandingPage from './LANDINGPAGE/LANDINGPAGE.jsx'
 
 function App() {
 
