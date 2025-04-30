@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PRODUCTCARD from "./PRODUCTCARD";
 
-const backendUrl = "http://vidrieriafloridabackend-production.up.railway.app"; // cambiá esto si tu URL es distinta
+const backendUrl = "https://vidrieriafloridabackend-production.up.railway.app"; // cambiá esto si tu URL es distinta
 
 function ProductsSection() {
   const [products, setProducts] = useState([]);
