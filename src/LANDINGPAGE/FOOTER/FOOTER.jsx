@@ -7,7 +7,7 @@ function FOOTER() {
       <div className="container text-center">
         <h5 className="mb-3">¿Cómo contactarnos?</h5>
         <p>Usá nuestro número o redes sociales:</p>
-        <p className="fw-bold">📞 +54 11 1234 5678</p>
+        <p className="fw-bold">📞 +54 11 2713 5239</p>
         <div className="d-flex justify-content-center gap-4 mt-3">
           <a href="https://wa.me/54111527135239" target="_blank" rel="noopener noreferrer" className="text-white fs-3">
             <FaWhatsapp />
