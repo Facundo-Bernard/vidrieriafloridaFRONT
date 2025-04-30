@@ -1,6 +1,6 @@
 import CAROUSEL1 from "../../assets/CAROUSEL1.jpg";
-import CAROUSEL2 from "../../assets/CAROUSEL2.jpg";
 import CAROUSEL3 from "../../assets/CAROUSEL3.jpg";
+import carouselirlfoto from "../../assets/carouselirlfoto.jpeg";
 
 function CAROUSEL() {
   return (
@@ -42,7 +42,7 @@ function CAROUSEL() {
           </div>
           <div className="carousel-item">
             <img
-              src={CAROUSEL2}
+              src={carouselirlfoto}
               className="d-block w-100"
               alt="Espejo"
               style={{ height: "60vh", objectFit: "cover" }}
