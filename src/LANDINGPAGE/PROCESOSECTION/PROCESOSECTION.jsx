@@ -37,9 +37,7 @@ function PROCESOSECTION() {
               <p>
                 <strong>¿Por qué elegirnos?</strong><br />
                 ✔️ Más de 20 años de experiencia<br />
-                ✔️ Garantía en todos los trabajos<br />
                 ✔️ Atención personalizada<br />
-                ✔️ Presupuestos sin cargo
               </p>
             </div>
           </div>
