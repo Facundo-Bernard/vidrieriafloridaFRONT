@@ -1,7 +1,57 @@
-.navbar{
-    margin-left: -15%;
-    margin-right: -15%;
-    margin-bottom: 1%;
-    margin-top: -0.9%;
-    background-color: brown;
+.navbar {
+  background-color: brown;
+  margin-bottom: 1%;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Logo responsive */
+.navbar-logo {
+  object-fit: cover;
+  object-position: center;
+  height: 50px; /* default móvil */
+  border-radius: 4px;
+  transition: height 0.3s;
+}
+
+@media (min-width: 576px) {
+  .navbar-logo {
+    height: 60px; /* tablets */
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-logo {
+    height: 80px; /* desktop */
+  }
+}
+
+/* Brand responsive */
+.navbar-brand {
+  font-size: 1rem; /* móvil */
+  color: white;
+  white-space: nowrap;
+}
+
+@media (min-width: 576px) {
+  .navbar-brand {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-brand {
+    font-size: 1.5rem;
+  }
+}
+
+/* Nav links */
+.nav-link {
+  color: white;
+  text-decoration: none;
+  margin-left: 0.5rem;
+}
+
+.nav-link:hover {
+  color: #f1c40f; /* ligero efecto hover */
 }
