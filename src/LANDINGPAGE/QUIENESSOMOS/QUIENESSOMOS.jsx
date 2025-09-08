@@ -41,9 +41,21 @@ function QUIENESSOMOS() {
             <p className="lead text-center">{presentacion.textoPrincipal}</p>
             <p className="text-center">{presentacion.textoSecundario}</p>
             <div className="text-center mt-4">
-              <a href="#productos" className="btn btn-dark">
-                Conocé nuestros productos
-              </a>
+              <a
+          href="#productos"
+          className="btn btn-lg px-3 py-2"
+          style={{
+            backgroundColor: "#8B0000",
+            color: "white",
+            boxShadow: "0 6px 20px rgba(0,0,0,0.5)",
+            transition: "all 0.3s ease",
+          }}
+          onMouseOver={(e) => (e.target.style.backgroundColor = "#a30000")}
+          onMouseOut={(e) => (e.target.style.backgroundColor = "#8B0000")}
+        >
+          Conocé nuestros productos
+        </a>
+
             </div>
           </div>
         </div>

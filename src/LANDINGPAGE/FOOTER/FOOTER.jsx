@@ -3,7 +3,7 @@ import "./FOOTER.css";
 
 function FOOTER() {
   return (
-    <footer id="contacto" className="footer bg-dark text-white py-4 animate__animated animate__fadeInUp">
+    <footer id="contacto" className="footer  text-white py-4 animate__animated animate__fadeInUp">
       <div className="container text-center">
         <h5 className="mb-3">¿Cómo contactarnos?</h5>
         <p>Usá nuestro número o redes sociales:</p>
