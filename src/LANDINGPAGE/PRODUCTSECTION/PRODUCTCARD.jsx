@@ -35,13 +35,13 @@ function PRODUCTCARD({ title, description, image }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setShowModal(false)} // cerrar al clickear en cualquier lado
+            onClick={() => setShowModal(false)}
           >
             <motion.img
               src={image}
               alt={title}
               className="modal-image"
-              onClick={(e) => e.stopPropagation()} // evitar que se cierre al clickear en la imagen
+              onClick={(e) => e.stopPropagation()}
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -65,7 +65,6 @@ function PRODUCTCARD({ title, description, image }) {
           box-shadow: 0 12px 24px rgba(0,0,0,0.2);
         }
 
-        /* Mantener proporción sin espacio vacío */
         .image-container {
           position: relative;
           width: 100%;
@@ -111,12 +110,9 @@ function PRODUCTCARD({ title, description, image }) {
           font-size: 0.95rem;
         }
 
-        /* Backdrop ocupa siempre toda la pantalla */
         .modal-backdrop {
           position: fixed;
-          top: 0; left: 0;
-          width: 100vw;
-          height: 100vh;
+          inset: 0; /* cubre toda la pantalla */
           background: rgba(0,0,0,0.8);
           display: flex;
           justify-content: center;
