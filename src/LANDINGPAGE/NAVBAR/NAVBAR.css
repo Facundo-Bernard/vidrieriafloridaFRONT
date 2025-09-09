@@ -1,48 +1,53 @@
-.navbar {
-  background-color: brown;
-  margin-bottom: 1%;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+/* ---- NAVBAR.css (pegalo reemplazando tu actual) ---- */
+
+/* seguridad global para evitar summing de paddings que causan overflow */
+html, body {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 
-/* Logo responsive */
+/* NAVBAR principal */
+.navbar {
+  background-color: brown;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  /* evita que el propio navbar cause overflow por accidente */
+  overflow-x: hidden;
+}
+
+/* Ajuste del container interno del navbar para que no genere overflow en small screens */
+.navbar .container {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+/* Logo responsive y seguro contra overflow */
 .navbar-logo {
   object-fit: cover;
   object-position: center;
   height: 50px; /* default móvil */
+  max-width: 100%;
+  display: block;       /* evita whitespace inline */
   border-radius: 4px;
   transition: height 0.3s;
 }
 
-@media (min-width: 576px) {
-  .navbar-logo {
-    height: 60px; /* tablets */
-  }
-}
-
-@media (min-width: 992px) {
-  .navbar-logo {
-    height: 80px; /* desktop */
-  }
-}
-
-/* Brand responsive */
+/* Nav brand */
 .navbar-brand {
-  font-size: 1rem; /* móvil */
+  font-size: 1rem;
   color: white;
-  white-space: nowrap;
-}
-
-@media (min-width: 576px) {
-  .navbar-brand {
-    font-size: 1.25rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .navbar-brand {
-    font-size: 1.5rem;
-  }
+  white-space: nowrap;  /* evita que el texto se parta y empuje layout */
 }
 
 /* Nav links */
@@ -50,8 +55,36 @@
   color: white;
   text-decoration: none;
   margin-left: 0.5rem;
+  white-space: nowrap;  /* importante para evitar que links largos rompan el ancho */
 }
 
+/* Hover */
 .nav-link:hover {
-  color: #f1c40f; /* ligero efecto hover */
+  color: #f1c40f;
+}
+
+/* Toggler asegúrate que no quede detrás de otros elementos */
+.navbar-toggler {
+  z-index: 1060;
+}
+
+/* Responsive heights */
+@media (min-width: 576px) {
+  .navbar-logo { height: 60px; }
+  .navbar-brand { font-size: 1.25rem; }
+}
+
+@media (min-width: 992px) {
+  .navbar-logo { height: 80px; }
+  .navbar-brand { font-size: 1.5rem; }
+}
+
+/* Ultimo recurso (solo móviles): evita que una caja forzada permita scroll lateral.
+   PONER SOLO SI NO QUIERES DEJAR EL BUG: */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    /* overscroll-behavior evita gestos raros que muevan contenido lateral */
+    overscroll-behavior-x: none;
+  }
 }
