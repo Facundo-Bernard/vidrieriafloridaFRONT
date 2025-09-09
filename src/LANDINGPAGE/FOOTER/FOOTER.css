@@ -1,8 +1,22 @@
-.footer{
-    margin-left: -15%;
-    margin-right: -15%;
-    margin-bottom: -2%;
-    margin-top: -0.9%;
-        background-color: rgb(82, 20, 20);
-
+/* FOOTER.css - Opción A (recomendada) */
+.footer {
+  margin: 0;                 /* quitar márgenes negativos que causan overflow */
+  padding: 1.2rem 0;         /* espacio interno */
+  background-color: rgb(82, 20, 20);
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;       /* parche seguro para casos raros */
 }
+
+/* Asegurar que el contenido quede centrado dentro de un container normal */
+.footer .container {
+  max-width: 1140px;        /* o el max-width que uses */
+  margin: 0 auto;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  box-sizing: border-box;
+}
+
+/* estilos internos */
+.footer h5, .footer p, .footer a { color: #fff; }
+.footer .d-flex a { line-height: 1; }
