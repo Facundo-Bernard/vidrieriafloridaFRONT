@@ -1,8 +1,35 @@
-import { useState } from "react";
+// src/LANDINGPAGE/PRODUCTSECTION/PRODUCTCARD.jsx
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-function PRODUCTCARD({ title, description, image }) {
+export default function ProductCard({ title, description, image }) {
   const [showModal, setShowModal] = useState(false);
+
+  // small helper: set --vh for older browsers (fallback)
+  useEffect(() => {
+    const setVh = () => {
+      document.documentElement.style.setProperty("--vh", `${window.innerHeight * 0.01}px`);
+    };
+    setVh();
+    window.addEventListener("resize", setVh);
+    window.addEventListener("orientationchange", setVh);
+    return () => {
+      window.removeEventListener("resize", setVh);
+      window.removeEventListener("orientationchange", setVh);
+    };
+  }, []);
+
+  // bloquear scroll de fondo cuando el modal está abierto
+  useEffect(() => {
+    if (showModal) {
+      // guardar overflow previo por si acaso
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prevOverflow || "";
+      };
+    }
+  }, [showModal]);
 
   return (
     <>
@@ -18,7 +45,7 @@ function PRODUCTCARD({ title, description, image }) {
             style={{ cursor: "pointer" }}
           >
             <img src={image} className="card-img-top" alt={title} />
-            <div className="overlay"></div>
+            <div className="overlay" />
           </div>
 
           <div className="card-body d-flex flex-column">
@@ -42,102 +69,85 @@ function PRODUCTCARD({ title, description, image }) {
               alt={title}
               className="modal-image"
               onClick={(e) => e.stopPropagation()}
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              draggable={false}
             />
           </motion.div>
         )}
       </AnimatePresence>
 
       <style>{`
+        /* Layout tarjeta (sin cambios grandes) */
         .product-card {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          border-radius: 12px;
-          overflow: hidden;
-          transition: box-shadow 0.3s ease;
+          display:flex;
+          flex-direction:column;
+          height:100%;
+          border-radius:12px;
+          overflow:hidden;
+          transition: box-shadow .3s ease;
+          background: #fff;
         }
-
-        .product-card:hover {
-          box-shadow: 0 12px 24px rgba(0,0,0,0.2);
-        }
+        .product-card:hover { box-shadow: 0 12px 24px rgba(0,0,0,0.12); }
 
         .image-container {
-          position: relative;
-          width: 100%;
-          aspect-ratio: 4 / 3;
-          overflow: hidden;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          position:relative;
+          width:100%;
+          aspect-ratio: 4/3;
+          overflow:hidden;
+          display:flex;
+          align-items:center;
+          justify-content:center;
         }
-
-        .image-container img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
-
+        .image-container img { width:100%; height:100%; object-fit:cover; display:block; }
         .overlay {
-          position: absolute;
-          top: 0; left: 0; right: 0; bottom: 0;
-          background: rgba(0,0,0,0.15);
-          opacity: 0;
-          transition: opacity 0.3s ease;
+          position:absolute; inset:0;
+          background: rgba(0,0,0,0.12);
+          opacity:0; transition: opacity .25s;
         }
+        .image-container:hover .overlay { opacity:1; }
 
-        .image-container:hover .overlay {
-          opacity: 1;
-        }
-
-        .card-title {
-          font-size: 1.2rem;
-          font-weight: bold;
-          color: brown;
-          margin-bottom: 0.5rem;
-        }
-
+        .card-title { font-size:1.1rem; font-weight:700; color:brown; margin:0.5rem 0 0; }
         .text-truncate-multiline {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          font-size: 0.95rem;
+          display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;
+          overflow:hidden; text-overflow:ellipsis; font-size:0.95rem;
         }
 
+        /* ---------- FIX modal backdrop para mobile ---------- */
+        :root { --vh: 1vh; } /* fallback */
         .modal-backdrop {
           position: fixed;
-          inset: 0; /* cubre toda la pantalla */
-          background: rgba(0,0,0,0.8);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          z-index: 1050;
+          inset: 0; /* top:0; right:0; bottom:0; left:0; */
+          /* Preferimos 100dvh (browser moderno) con fallback a variable --vh */
+          height: max(100dvh, calc(var(--vh, 1vh) * 100));
+          width: 100%;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          background: rgba(0,0,0,0.88);
+          z-index: 9999;
+          -webkit-overflow-scrolling: touch;
+          touch-action: manipulation;
         }
 
         .modal-image {
-          max-width: 90%;
-          max-height: 90%;
+          max-width: 92%;
+          max-height: 92%;
           border-radius: 12px;
-          box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+          box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+          user-select: none;
+          -webkit-user-drag: none;
         }
 
         @media (max-width: 768px) {
-          .image-container {
-            aspect-ratio: 3 / 2;
-          }
-          .card-title {
-            font-size: 1rem;
-          }
+          .image-container { aspect-ratio: 3/2; }
+          .card-title { font-size: 1rem; }
+          .modal-backdrop { padding: 12px; }
+          .modal-image { border-radius: 10px; }
         }
       `}</style>
     </>
   );
 }
-
-export default PRODUCTCARD;
