@@ -35,12 +35,13 @@ function PRODUCTCARD({ title, description, image }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setShowModal(false)}
+            onClick={() => setShowModal(false)} // cerrar al clickear en cualquier lado
           >
             <motion.img
               src={image}
               alt={title}
               className="modal-image"
+              onClick={(e) => e.stopPropagation()} // evitar que se cierre al clickear en la imagen
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -64,11 +65,11 @@ function PRODUCTCARD({ title, description, image }) {
           box-shadow: 0 12px 24px rgba(0,0,0,0.2);
         }
 
-        /* Aspect ratio en vez de height fijo */
+        /* Mantener proporción sin espacio vacío */
         .image-container {
           position: relative;
           width: 100%;
-          aspect-ratio: 4 / 3; /* un poco más vertical */
+          aspect-ratio: 4 / 3;
           overflow: hidden;
           display: flex;
           justify-content: center;
@@ -110,15 +111,17 @@ function PRODUCTCARD({ title, description, image }) {
           font-size: 0.95rem;
         }
 
+        /* Backdrop ocupa siempre toda la pantalla */
         .modal-backdrop {
           position: fixed;
-          top: 0; left: 0; right: 0; bottom: 0;
+          top: 0; left: 0;
+          width: 100vw;
+          height: 100vh;
           background: rgba(0,0,0,0.8);
           display: flex;
           justify-content: center;
           align-items: center;
           z-index: 1050;
-          cursor: zoom-out;
         }
 
         .modal-image {
@@ -130,7 +133,7 @@ function PRODUCTCARD({ title, description, image }) {
 
         @media (max-width: 768px) {
           .image-container {
-            aspect-ratio: 3 / 2; /* un poquito más baja en móvil */
+            aspect-ratio: 3 / 2;
           }
           .card-title {
             font-size: 1rem;
