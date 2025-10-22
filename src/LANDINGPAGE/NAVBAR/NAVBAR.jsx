@@ -17,7 +17,7 @@ function NAVBAR() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg fixed-top shadow-sm">
+    <nav className="navbar navbar-expand-lg sticky-top shadow-sm">
       <div className="container">
         {/* Logo + Brand */}
         <Link to="/" className="d-flex align-items-center text-decoration-none">
