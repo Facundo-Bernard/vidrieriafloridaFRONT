@@ -1,4 +1,4 @@
-/* ---- NAVBAR.css (pegalo reemplazando tu actual) ---- */
+/* ---- NAVBAR.css (reemplazar el actual) ---- */
 
 /* seguridad global para evitar summing de paddings que causan overflow */
 html, body {
@@ -17,8 +17,8 @@ html, body {
   right: 0;
   width: 100%;
   box-sizing: border-box;
-  /* evita que el propio navbar cause overflow por accidente */
   overflow-x: hidden;
+  transition: box-shadow .2s ease, transform .18s ease;
 }
 
 /* Ajuste del container interno del navbar para que no genere overflow en small screens */
@@ -38,7 +38,7 @@ html, body {
   object-position: center;
   height: 50px; /* default móvil */
   max-width: 100%;
-  display: block;       /* evita whitespace inline */
+  display: block;
   border-radius: 4px;
   transition: height 0.3s;
 }
@@ -47,7 +47,7 @@ html, body {
 .navbar-brand {
   font-size: 1rem;
   color: white;
-  white-space: nowrap;  /* evita que el texto se parta y empuje layout */
+  white-space: nowrap;
 }
 
 /* Nav links */
@@ -55,7 +55,7 @@ html, body {
   color: white;
   text-decoration: none;
   margin-left: 0.5rem;
-  white-space: nowrap;  /* importante para evitar que links largos rompan el ancho */
+  white-space: nowrap;
 }
 
 /* Hover */
@@ -79,12 +79,30 @@ html, body {
   .navbar-brand { font-size: 1.5rem; }
 }
 
-/* Ultimo recurso (solo móviles): evita que una caja forzada permita scroll lateral.
-   PONER SOLO SI NO QUIERES DEJAR EL BUG: */
+/* ---------- MOBILE FIX: usar fixed en lugar de sticky (solo si es necesario) ---------- */
+/* No lo forzamos por defecto: la clase `navbar-fixed-mobile` se agrega desde React cuando detecta pantalla pequeña. */
+@media (max-width: 768px) {
+  .navbar.navbar-fixed-mobile {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1060; /* similar a Bootstrap */
+    /* elevamos la sombra para diferenciar mientras scroll */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  }
+
+  /* Cuando el menú collapsed se abre (bootstrap), queremos que se muestre sobre el contenido */
+  .navbar.navbar-fixed-mobile .navbar-collapse {
+    background: rgba(0,0,0,0.02);
+  }
+}
+
+/* Ultimo recurso: evita scroll lateral en móviles si aún tenés problemas (aplicar solo si es necesario) */
 @media (max-width: 768px) {
   html, body {
-    overflow-x: hidden !important;
-    /* overscroll-behavior evita gestos raros que muevan contenido lateral */
+    /* no forzar por defecto; mantené esto si aún tenés overflow horizontal misterioso */
+    /* overflow-x: hidden !important; */
     overscroll-behavior-x: none;
   }
 }
